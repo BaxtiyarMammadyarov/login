@@ -9,17 +9,17 @@ register.addEventListener('click',(e)=>{
     obj.name = fullname.value;
     obj.email = email.value;
     obj.password = pass.value;
-    const arr = JSON.parse(localStorage.getItem('db'));
-    arr.forEach(element => {
-        if(element.email === obj.email){
-            email.value = "";
-             pass.value = "";
-             alert("Email already exists !!!")  
-        }
-    });
-    console.log(obj)
+    const db = JSON.parse(localStorage.getItem('db'));
+    if(db){
+        db.forEach(element => {
+            if(element.email === obj.email){
+                email.value = "";
+                 pass.value = "";
+                 alert("Email already exists !!!")  
+            }
+        });
+    }
     arr.push(obj);
-    console.log(arr)
     localStorage.setItem('db',JSON.stringify(arr) );
     window.location.pathname = "/login/index.html"
 
